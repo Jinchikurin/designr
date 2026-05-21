@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designr — Design System Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ═══════════════════════════════════════
+         LEFT TOOLBAR
+    ═══════════════════════════════════════ -->
+    <aside id="toolbar">
+      <div class="resize-handle resize-handle-e" id="toolbar-resize-handle"></div>
+
+      <!-- Arc-style: native traffic lights live here (Electron only) -->
+      <div id="toolbar-mac-bar"></div>
+
+      <div id="toolbar-body">
+
+        <!-- ── Components ── -->
+        <div class="toolbar-section-label">Atoms</div>
+        <div class="toolbar-flat-group">
+
+          <button class="toolbar-item" id="open-font-modal-btn">
+            <span class="toolbar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 11L5.5 3L9 11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3.2 8.5H7.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                <path d="M11 4V11M9.5 4H12.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="toolbar-item-label">Typography</span>
+            <span class="toolbar-item-badge" id="font-badge">0</span>
+          </button>
+
+          <button class="toolbar-item" id="open-palette-modal-btn">
+            <span class="toolbar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/>
+                <circle cx="7"  cy="3"  r="1.4" fill="currentColor" opacity="0.9"/>
+                <circle cx="10.5" cy="9" r="1.4" fill="currentColor" opacity="0.6"/>
+                <circle cx="3.5" cy="9" r="1.4" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </span>
+            <span class="toolbar-item-label">Colors</span>
+            <span class="toolbar-item-badge" id="palette-badge">0</span>
+          </button>
+
+          <button class="toolbar-item" id="open-spacing-modal-btn">
+            <span class="toolbar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7H12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                <path d="M2 4H8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                <path d="M2 10H5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                <path d="M2 2.5V11.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="toolbar-item-label">Spacing</span>
+            <span class="toolbar-item-badge" id="spacing-badge">0</span>
+          </button>
+
+          <button class="toolbar-item" id="open-shadow-modal-btn">
+            <span class="toolbar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect x="2" y="2" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.3"/>
+                <rect x="4" y="4" width="8" height="8" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.3" opacity="0.5"/>
+              </svg>
+            </span>
+            <span class="toolbar-item-label">Shadows</span>
+            <span class="toolbar-item-badge" id="shadow-badge">0</span>
+          </button>
+
+          <!-- Collapsed extra atoms -->
+          <div id="atoms-extra" style="display:none">
+
+            <button class="toolbar-item" id="open-gradients-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="currentColor" stop-opacity="0.2"/><stop offset="100%" stop-color="currentColor"/></linearGradient></defs><rect x="1.5" y="1.5" width="11" height="11" rx="2" fill="url(#tg)"/></svg></span>
+              <span class="toolbar-item-label">Gradients</span>
+              <span class="toolbar-item-badge" id="gradients-badge">0</span>
+            </button>
+
+            <button class="toolbar-item" id="open-radii-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="4" stroke="currentColor" stroke-width="1.3"/></svg></span>
+              <span class="toolbar-item-label">Border Radius</span>
+              <span class="toolbar-item-badge" id="radii-badge">0</span>
+            </button>
+
+            <button class="toolbar-item" id="open-borders-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 4.5h11M1.5 7h11M1.5 9.5h11" stroke="currentColor" stroke-linecap="round" stroke-width="1.3"/></svg></span>
+              <span class="toolbar-item-label">Border</span>
+              <span class="toolbar-item-badge" id="borders-badge">0</span>
+            </button>
+
+            <button class="toolbar-item" id="open-opacities-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3" opacity="0.25"/><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3 3"/></svg></span>
+              <span class="toolbar-item-label">Opacity</span>
+              <span class="toolbar-item-badge" id="opacities-badge">0</span>
+            </button>
+
+            <button class="toolbar-item" id="open-breakpoints-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="4" width="12" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M4 4v6M10 4v6" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg></span>
+              <span class="toolbar-item-label">Breakpoints</span>
+              <span class="toolbar-item-badge" id="breakpoints-badge">0</span>
+            </button>
+
+            <button class="toolbar-item" id="open-zindices-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="4.5" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="5" y="2" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.3" opacity="0.5"/></svg></span>
+              <span class="toolbar-item-label">Z-Index</span>
+              <span class="toolbar-item-badge" id="zindices-badge">0</span>
+            </button>
+
+            <button class="toolbar-item" id="open-motions-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 9C3 6 5 5 7 7S11 5 12 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="12" cy="5" r="1.5" fill="currentColor"/></svg></span>
+              <span class="toolbar-item-label">Motion</span>
+              <span class="toolbar-item-badge" id="motions-badge">0</span>
+            </button>
+
+            <button class="toolbar-item" id="open-grids-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 1.5v11M9.5 1.5v11M1.5 5h11M1.5 9h11" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg></span>
+              <span class="toolbar-item-label">Grid</span>
+              <span class="toolbar-item-badge" id="grids-badge">0</span>
+            </button>
+
+            <button class="toolbar-item" id="open-icons-btn">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="6" y="6" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1.5" y="1.5" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1.1" opacity="0.5"/></svg></span>
+              <span class="toolbar-item-label">Iconography</span>
+              <span class="toolbar-item-badge" id="icons-badge">0</span>
+            </button>
+
+          </div>
+
+          <!-- Show more / less toggle -->
+          <button class="atoms-show-more-btn" id="atoms-show-more-btn">
+            <span id="atoms-show-more-label">Show more</span>
+            <svg id="atoms-show-more-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" style="transition:transform 0.18s">
+              <path d="M3 4L5 6L7 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+        </div>
+
+        <!-- ── Tokens ── -->
+        <div id="toolbar-tokens-section">
+        <div class="toolbar-section-label toolbar-section-label-tokens">Tokens</div>
+        <div class="tokens-tip" id="tokens-locked-tip">Create an atom to activate tokens</div>
+        <div class="toolbar-flat-group">
+
+          <button class="toolbar-item token-item token-item-inactive" id="token-item-typography"
+                  data-token-cat="typography" title="Add typography token">
+            <span class="toolbar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 11L5.5 3L9 11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3.2 8.5H7.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="toolbar-item-label">Typography</span>
+            <span class="token-item-badge" id="tokens-badge">0</span>
+          </button>
+
+          <button class="toolbar-item token-item token-item-inactive" id="token-item-color"
+                  data-token-cat="color" title="Add color token">
+            <span class="toolbar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/>
+                <circle cx="7" cy="3" r="1.4" fill="currentColor" opacity="0.9"/>
+                <circle cx="10.5" cy="9" r="1.4" fill="currentColor" opacity="0.6"/>
+                <circle cx="3.5" cy="9" r="1.4" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </span>
+            <span class="toolbar-item-label">Color</span>
+          </button>
+
+          <button class="toolbar-item token-item token-item-inactive" id="token-item-spacing"
+                  data-token-cat="spacing" title="Add spacing token">
+            <span class="toolbar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7H12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                <path d="M2 4H8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                <path d="M2 10H5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                <path d="M2 2.5V11.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="toolbar-item-label">Spacing</span>
+          </button>
+
+          <button class="toolbar-item token-item token-item-inactive" id="token-item-shadow"
+                  data-token-cat="shadow" title="Add shadow token">
+            <span class="toolbar-item-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect x="2" y="2" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.3"/>
+                <rect x="4" y="4" width="8" height="8" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.3" opacity="0.5"/>
+              </svg>
+            </span>
+            <span class="toolbar-item-label">Shadow</span>
+          </button>
+
+        </div>
+        </div><!-- end #toolbar-tokens-section -->
+
+      </div>
+
+      <!-- ── PREVIEW section ── -->
+      <div id="toolbar-preview-section">
+        <div class="toolbar-section-label toolbar-section-label-preview">Preview</div>
+        <div class="preview-locked-tip" id="preview-locked-tip">Create an atom to activate preview</div>
+
+        <!-- Pairings group -->
+        <div class="toolbar-group">
+          <div class="toolbar-group-header collapsed" data-group="pairings-preview">
+            <svg class="chevron" width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M3 4L5 6L7 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Pairings</span>
+          </div>
+          <div class="toolbar-group-body" id="group-pairings-preview" style="display:none">
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-specimen-btn">
+              <span class="toolbar-item-icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 3h10M2 6h7M2 9h9M2 11.5h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="toolbar-item-label">Type Specimen</span>
+              <span class="toolbar-item-toggle" id="specimen-toggle-dot"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-pairings-btn">
+              <span class="toolbar-item-icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 4h10M2 7h7M2 10h9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="toolbar-item-label">Font</span>
+              <span class="toolbar-item-toggle" id="pairings-toggle-dot"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-color-pairings-btn">
+              <span class="toolbar-item-icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <circle cx="5" cy="7" r="3.5" stroke="currentColor" stroke-width="1.3"/>
+                  <circle cx="9" cy="7" r="3.5" stroke="currentColor" stroke-width="1.3"/>
+                </svg>
+              </span>
+              <span class="toolbar-item-label">Color</span>
+              <span class="toolbar-item-toggle" id="color-pairings-toggle-dot"></span>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Components group -->
+        <div class="toolbar-group">
+          <div class="toolbar-group-header collapsed" data-group="components-preview">
+            <svg class="chevron" width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M3 4L5 6L7 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Components</span>
+          </div>
+          <div class="toolbar-group-body" id="group-components-preview" style="display:none">
+
+            <div class="preview-empty-msg" id="components-empty-msg">Add atoms to activate component preview</div>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-button" data-comp="button">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="4" width="11" height="6" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M5 7h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+              <span class="toolbar-item-label">Button</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-button"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-input" data-comp="input">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="4.5" width="11" height="5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4 7h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+              <span class="toolbar-item-label">Input</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-input"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-card" data-comp="card">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 5.5h11" stroke="currentColor" stroke-width="1.3"/><path d="M4 8.5h6M4 10.5h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+              <span class="toolbar-item-label">Card</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-card"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-badge" data-comp="badge">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="5" width="5.5" height="4" rx="2" stroke="currentColor" stroke-width="1.3"/><rect x="7.5" y="5" width="5.5" height="4" rx="2" stroke="currentColor" stroke-width="1.3"/></svg></span>
+              <span class="toolbar-item-label">Badge</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-badge"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-alert" data-comp="alert">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 6v2M7 9.5v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+              <span class="toolbar-item-label">Alert</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-alert"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-avatar" data-comp="avatar">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="5.5" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M2.5 11.5C3.5 9.5 5.1 8.5 7 8.5s3.5 1 4.5 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+              <span class="toolbar-item-label">Avatar</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-avatar"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-tabs" data-comp="tabs">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 9.5h11" stroke="currentColor" stroke-width="1.3"/><rect x="1.5" y="4" width="4" height="5.5" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M7 6h5.5M7 8h3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+              <span class="toolbar-item-label">Tabs</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-tabs"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-select" data-comp="select">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="4.5" width="11" height="5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M9.5 7l1.5-1.5M9.5 7l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+              <span class="toolbar-item-label">Select</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-select"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-switch" data-comp="switch">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="4.5" width="12" height="5" rx="2.5" stroke="currentColor" stroke-width="1.3"/><circle cx="9.5" cy="7" r="2" fill="currentColor" opacity="0.5"/></svg></span>
+              <span class="toolbar-item-label">Switch</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-switch"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-checkbox" data-comp="checkbox">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 4.5L4.5 5.5L6 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3" opacity="0.4"/><rect x="2" y="8" width="10" height="1.5" rx=".75" fill="currentColor" opacity="0.2"/><rect x="2" y="11" width="7" height="1.5" rx=".75" fill="currentColor" opacity="0.15"/></svg></span>
+              <span class="toolbar-item-label">Checkbox</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-checkbox"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-progress" data-comp="progress">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="5.5" width="11" height="3" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="1.5" y="5.5" width="6" height="3" rx="1.5" fill="currentColor" opacity="0.4"/></svg></span>
+              <span class="toolbar-item-label">Progress</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-progress"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-skeleton" data-comp="skeleton">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2" width="11" height="2.5" rx="1.25" fill="currentColor" opacity="0.2"/><rect x="1.5" y="6" width="8" height="2.5" rx="1.25" fill="currentColor" opacity="0.2"/><rect x="1.5" y="10" width="5" height="2.5" rx="1.25" fill="currentColor" opacity="0.2"/></svg></span>
+              <span class="toolbar-item-label">Skeleton</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-skeleton"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-table" data-comp="table">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 5h11M5 1.5v11" stroke="currentColor" stroke-width="1.2"/></svg></span>
+              <span class="toolbar-item-label">Table</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-table"></span>
+            </button>
+
+            <button class="toolbar-item toolbar-toggle-item" id="toggle-comp-slider" data-comp="slider">
+              <span class="toolbar-item-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 7h11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="6" cy="7" r="2" stroke="currentColor" stroke-width="1.3"/></svg></span>
+              <span class="toolbar-item-label">Slider</span>
+              <span class="toolbar-item-toggle" id="comp-toggle-slider"></span>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="toolbar-footer">
+
+        <!-- Options collapsible group -->
+        <div class="options-group" id="options-group">
+          <button class="options-header" id="options-header" aria-expanded="false">
+            <svg class="options-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M3 4L5 6L7 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <circle cx="6.5" cy="6.5" r="2" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M6.5 1v1M6.5 11v1M1 6.5h1M11 6.5h1M2.93 2.93l.7.7M9.37 9.37l.7.7M9.37 2.93l-.7.7M3.63 9.37l-.7.7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+            <span>Options</span>
+          </button>
+
+          <div class="options-body hidden" id="options-body">
+
+            <!-- General -->
+            <div class="options-section-label">General</div>
+
+            <div class="option-row" id="history-toggle-btn">
+              <span class="option-row-icon">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <path d="M7 1a6 6 0 100 12A6 6 0 007 1z" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M7 4v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="option-row-label">History</span>
+            </div>
+
+            <div class="option-row" id="theme-toggle" title="Toggle light/dark mode">
+              <span class="option-row-icon">
+                <svg class="theme-icon theme-icon-moon" width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <path d="M12 8.5A5.5 5.5 0 015.5 2a5.5 5.5 0 000 10A5.5 5.5 0 0012 8.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                </svg>
+                <svg class="theme-icon theme-icon-sun" width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M7 1v1.5M7 11.5V13M1 7h1.5M11.5 7H13M3.05 3.05l1.06 1.06M9.9 9.9l1.05 1.05M10.95 3.05L9.9 4.1M4.1 9.9l-1.05 1.05" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="option-row-label theme-toggle-label"></span>
+              <div class="option-toggle-track" id="theme-toggle-track">
+                <div class="option-toggle-thumb"></div>
+              </div>
+            </div>
+
+            <!-- Canvas -->
+            <div class="options-section-label">Canvas</div>
+
+            <div class="option-row" style="cursor:default">
+              <span class="option-row-icon">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <rect x="1" y="1.5" width="5.5" height="11" rx="1" stroke="currentColor" stroke-width="1.4"/>
+                  <rect x="7.5" y="1.5" width="5.5" height="11" rx="1" stroke="currentColor" stroke-width="1.4"/>
+                </svg>
+              </span>
+              <span class="option-row-label">Columns</span>
+              <div class="option-col-picker">
+                <button class="option-col-btn active" id="canvas-col-1" data-cols="1">1</button>
+                <button class="option-col-btn" id="canvas-col-2" data-cols="2">2</button>
+                <button class="option-col-btn" id="canvas-col-3" data-cols="3">3</button>
+              </div>
+            </div>
+
+            <!-- Canvas background pattern + opacity -->
+            <div class="option-row" style="cursor:default">
+              <span class="option-row-icon">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2 1.5"/>
+                </svg>
+              </span>
+              <span class="option-row-label">Background</span>
+              <div class="option-col-picker">
+                <button class="option-col-btn active" id="canvas-bg-none" title="None">—</button>
+                <button class="option-col-btn" id="canvas-bg-dots" title="Dots">·</button>
+                <button class="option-col-btn" id="canvas-bg-grid" title="Grid">#</button>
+              </div>
+            </div>
+
+            <div class="option-row" style="cursor:default">
+              <span class="option-row-icon">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+                  <circle cx="5" cy="7" r="1.5" fill="currentColor" opacity="0.4"/>
+                </svg>
+              </span>
+              <span class="option-row-label">Opacity</span>
+              <div class="option-slider-wrap">
+                <input type="range" class="option-opacity-range" id="canvas-bg-opacity-val" min="0" max="100" value="100">
+                <span class="option-slider-pct" id="canvas-bg-opacity-pct">100%</span>
+              </div>
+            </div>
+
+            <!-- Card Appearance -->
+            <div class="options-section-label">Card Appearance</div>
+
+            <div class="option-row" style="cursor:default">
+              <span class="option-row-icon">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3" opacity="0.5"/>
+                  <rect x="4" y="4" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
+                </svg>
+              </span>
+              <span class="option-row-label">Background</span>
+              <div class="option-slider-wrap">
+                <input type="range" class="option-opacity-range" id="card-bg-val" min="0" max="100" value="100">
+                <span class="option-slider-pct" id="card-bg-pct">100%</span>
+              </div>
+            </div>
+
+            <div class="option-row" style="cursor:default">
+              <span class="option-row-icon">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                </svg>
+              </span>
+              <span class="option-row-label">Border</span>
+              <div class="option-slider-wrap">
+                <input type="range" class="option-opacity-range" id="card-border-val" min="12" max="100" value="100">
+                <span class="option-slider-pct" id="card-border-pct">100%</span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <!-- Export -->
+        <button id="export-btn" class="export-btn">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M6.5 1V9M3.5 6.5L6.5 9.5L9.5 6.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 10.5V11.5C1 11.776 1.224 12 1.5 12H11.5C11.776 12 12 11.776 12 11.5V10.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Export
+        </button>
+
+      </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════
+         CANVAS
+    ═══════════════════════════════════════ -->
+    <main id="canvas">
+      <div id="canvas-topbar">
+        <div class="canvas-topbar-left">
+          <span class="canvas-label">Canvas</span>
+          <div class="canvas-breadcrumb">
+            <input id="system-name" type="text" value="My Design System" autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+        <div class="canvas-topbar-right">
+          <span id="canvas-font-count-label" class="canvas-meta hidden">0 fonts</span>
+
+          <div class="topbar-btn-group">
+            <button id="open-project-btn" class="topbar-btn" title="Open Project (⌘O)">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M1.5 4.5V10.5C1.5 11.052 1.948 11.5 2.5 11.5H10.5C11.052 11.5 11.5 11.052 11.5 10.5V5.5C11.5 4.948 11.052 4.5 10.5 4.5H6.5L5.5 2.5H2.5C1.948 2.5 1.5 2.948 1.5 3.5V4.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              </svg>
+              Open
+            </button>
+            <button id="save-project-btn" class="topbar-btn" title="Save Project (⌘S)">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M2.5 1.5H9L11.5 4V10.5C11.5 11.052 11.052 11.5 10.5 11.5H2.5C1.948 11.5 1.5 11.052 1.5 10.5V2.5C1.5 1.948 1.948 1.5 2.5 1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                <path d="M4 1.5V5H8.5V1.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                <path d="M3.5 8H9.5M3.5 10H7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+              Save
+            </button>
+          </div>
+
+          <div class="topbar-divider"></div>
+
+          <button id="undo-btn" class="undo-btn" title="Undo (⌘Z)" disabled>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 5.5C2 5.5 3.5 2 7 2C10 2 11.5 4.5 11.5 6.5C11.5 8.5 10 11 7 11C4.5 11 3 9.5 2.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M2 2.5V5.5H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Undo
+          </button>
+        </div>
+      </div>
+
+      <div id="canvas-body">
+        <!-- Empty state -->
+        <div id="canvas-empty">
+          <div class="empty-glyph">✦</div>
+          <p class="empty-title">Start building your design system</p>
+          <p class="empty-sub">Add components from the left panel</p>
+          <button class="empty-cta" id="empty-add-font-btn">
+            + Add your first atom
+          </button>
+        </div>
+
+        <!-- Fonts section -->
+        <div id="canvas-fonts-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Typography</span>
+              <span class="canvas-section-sub">Fonts</span>
+            </div>
+            <button class="add-inline-btn" id="add-font-inline-btn">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Add Font
+            </button>
+          </div>
+          <div id="font-grid"></div>
+        </div>
+
+        <!-- Spacing section -->
+        <div id="canvas-spacing-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Spacing</span>
+              <span class="canvas-section-sub">Scales</span>
+            </div>
+            <button class="add-inline-btn" id="add-spacing-inline-btn">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Add Scale
+            </button>
+          </div>
+          <div id="spacing-grid"></div>
+        </div>
+
+        <!-- Shadows section -->
+        <div id="canvas-shadows-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Shadows</span>
+              <span class="canvas-section-sub">Elevations</span>
+            </div>
+            <button class="add-inline-btn" id="add-shadow-inline-btn">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Add Shadow
+            </button>
+          </div>
+          <div id="shadow-grid"></div>
+        </div>
+
+        <!-- Color section -->
+        <div id="canvas-colors-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Color</span>
+              <span class="canvas-section-sub">Palettes</span>
+            </div>
+            <button class="add-inline-btn" id="add-palette-inline-btn">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Add Palette
+            </button>
+          </div>
+          <div id="palette-grid"></div>
+        </div>
+
+        <!-- Color Pairings section -->
+        <div id="canvas-color-pairings-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Color Pairings</span>
+              <span class="canvas-section-sub">Accessibility</span>
+            </div>
+          </div>
+          <div id="color-pairings-grid"></div>
+        </div>
+
+        <!-- Gradients section -->
+        <div id="canvas-gradients-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Gradients</span><span class="canvas-section-sub">Color ramps</span></div><button class="add-inline-btn" id="add-gradients-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="gradients-grid"></div>
+        </div>
+
+        <!-- Border Radius section -->
+        <div id="canvas-radii-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Border Radius</span><span class="canvas-section-sub">Scales</span></div><button class="add-inline-btn" id="add-radii-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="radii-grid"></div>
+        </div>
+
+        <!-- Border section -->
+        <div id="canvas-borders-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Border</span><span class="canvas-section-sub">Stroke widths</span></div><button class="add-inline-btn" id="add-borders-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="borders-grid"></div>
+        </div>
+
+        <!-- Opacity section -->
+        <div id="canvas-opacities-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Opacity</span><span class="canvas-section-sub">Transparency</span></div><button class="add-inline-btn" id="add-opacities-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="opacities-grid"></div>
+        </div>
+
+        <!-- Breakpoints section -->
+        <div id="canvas-breakpoints-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Breakpoints</span><span class="canvas-section-sub">Responsive</span></div><button class="add-inline-btn" id="add-breakpoints-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="breakpoints-grid"></div>
+        </div>
+
+        <!-- Z-Index section -->
+        <div id="canvas-zindices-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Z-Index</span><span class="canvas-section-sub">Layering</span></div><button class="add-inline-btn" id="add-zindices-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="zindices-grid"></div>
+        </div>
+
+        <!-- Motion section -->
+        <div id="canvas-motions-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Motion</span><span class="canvas-section-sub">Animation</span></div><button class="add-inline-btn" id="add-motions-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="motions-grid"></div>
+        </div>
+
+        <!-- Grid section -->
+        <div id="canvas-grids-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Grid</span><span class="canvas-section-sub">Layout</span></div><button class="add-inline-btn" id="add-grids-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="grids-grid"></div>
+        </div>
+
+        <!-- Iconography section -->
+        <div id="canvas-icons-section" class="canvas-section hidden">
+          <div class="canvas-section-header"><div class="canvas-section-header-left"><span class="canvas-section-title">Iconography</span><span class="canvas-section-sub">Icon sizes</span></div><button class="add-inline-btn" id="add-icons-inline-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Add</button></div>
+          <div id="icons-grid"></div>
+        </div>
+
+        <!-- Type Specimen section -->
+        <div id="canvas-specimen-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Type Specimen</span>
+              <span class="canvas-section-sub">All variants</span>
+            </div>
+            <button class="add-inline-btn" id="export-specimen-btn" title="Export as PDF">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M5.5 1V8M3 5.5L5.5 8L8 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 9.5h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Export PDF
+            </button>
+          </div>
+          <div id="specimen-grid"></div>
+        </div>
+
+        <!-- Font Pairings section -->
+        <div id="canvas-pairings-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Font Pairings</span>
+              <span class="canvas-section-sub">Combinations</span>
+            </div>
+          </div>
+          <div id="pairings-grid"></div>
+        </div>
+
+        <!-- Semantic Tokens section -->
+        <div id="canvas-tokens-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Tokens</span>
+              <span class="canvas-section-sub">Semantic</span>
+            </div>
+            <button class="add-inline-btn" id="add-token-inline-btn">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Add Token
+            </button>
+          </div>
+          <div id="tokens-grid"></div>
+        </div>
+
+        <!-- Component Preview section -->
+        <div id="canvas-components-section" class="canvas-section hidden">
+          <div class="canvas-section-header">
+            <div class="canvas-section-header-left">
+              <span class="canvas-section-title">Components</span>
+              <span class="canvas-section-sub">Live Preview</span>
+            </div>
+          </div>
+          <div id="components-preview"></div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         RIGHT PROPERTIES
+    ═══════════════════════════════════════ -->
+    <aside id="properties">
+      <div class="resize-handle resize-handle-w" id="props-resize-handle"></div>
+      <div id="properties-topbar">
+        <span>Properties</span>
+      </div>
+      <div id="properties-body">
+        <div id="props-empty">
+          <div class="props-empty-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="3" y="3" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+              <rect x="15" y="3" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+              <rect x="3" y="15" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+              <rect x="15" y="15" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+            </svg>
+          </div>
+          <p>Select a component<br>to edit its properties</p>
+        </div>
+        <div id="props-font" class="hidden"></div>
+      </div>
+    </aside>
+
+  </div><!-- #app -->
+
+  <!-- ═══════════════════════════════════════
+       ADD FONT MODAL
+  ═══════════════════════════════════════ -->
+  <div id="font-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Add Font">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Font</span>
+        </div>
+        <button class="modal-close-btn" id="modal-close-btn" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="all">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 3h8M2 6h8M2 9h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          All Fonts
+        </button>
+        <button class="modal-tab" data-tab="google">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M6 1C6 1 9 3.5 9 6C9 8.5 6 11 6 11" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M6 1C6 1 3 3.5 3 6C3 8.5 6 11 6 11" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M1 6H11" stroke="currentColor" stroke-width="1.3"/>
+          </svg>
+          Google Fonts
+        </button>
+        <button class="modal-tab" data-tab="system">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <rect x="1" y="1" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M4 11H8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <path d="M6 9V11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          System Fonts
+        </button>
+      </div>
+      <div class="modal-search-row">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M9.5 9.5L12.5 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <input id="font-search" type="text" placeholder="Search fonts…" autocomplete="off" spellcheck="false">
+        <span id="font-search-count" class="search-count"></span>
+      </div>
+      <div class="modal-filter-row" id="modal-filter-row">
+        <button class="filter-chip active" data-category="all">All</button>
+        <button class="filter-chip" data-category="Sans-serif">Sans-serif</button>
+        <button class="filter-chip" data-category="Serif">Serif</button>
+        <button class="filter-chip" data-category="Monospace">Monospace</button>
+        <button class="filter-chip" data-category="Display">Display</button>
+      </div>
+      <div id="font-list"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       ADD PALETTE MODAL
+  ═══════════════════════════════════════ -->
+  <div id="palette-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Add Color Palette">
+    <div class="modal-backdrop" id="palette-modal-backdrop"></div>
+    <div class="modal-panel palette-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Color Palette</span>
+          <span class="modal-subtitle">Custom color scale</span>
+        </div>
+        <button class="modal-close-btn" id="palette-modal-close-btn" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="palette-modal-body">
+        <!-- Name -->
+        <div class="pm-row">
+          <label class="pm-label">Palette Name</label>
+          <input type="text" class="prop-input" id="palette-name-input"
+                 placeholder="e.g. Primary, Brand, Accent…" autocomplete="off">
+          <div class="pm-name-suggestion hidden" id="palette-name-suggestion"></div>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Color Space</label>
+          <div class="option-col-picker">
+            <button class="option-col-btn active" id="cs-hsl" data-cs="hsl">HSL</button>
+            <button class="option-col-btn" id="cs-oklch" data-cs="oklch">OKLCH</button>
+          </div>
+        </div>
+
+        <!-- Color Picker -->
+        <div class="pm-row">
+          <label class="pm-label">Base Color</label>
+          <div class="cp-row">
+            <div class="cp-swatch" id="cp-swatch" title="Click to open color picker"></div>
+            <div class="cp-fields">
+              <div class="cp-field cp-field-hex">
+                <span class="cp-field-label">HEX</span>
+                <input type="text" id="cp-hex" value="#7c3aed" maxlength="7" spellcheck="false">
+              </div>
+              <div class="cp-field">
+                <span class="cp-field-label">R</span>
+                <input type="number" id="cp-r" min="0" max="255" value="124">
+              </div>
+              <div class="cp-field">
+                <span class="cp-field-label">G</span>
+                <input type="number" id="cp-g" min="0" max="255" value="58">
+              </div>
+              <div class="cp-field">
+                <span class="cp-field-label">B</span>
+                <input type="number" id="cp-b" min="0" max="255" value="237">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live scale preview -->
+        <div class="pm-row">
+          <label class="pm-label">Generated Scale — 10 stops</label>
+          <div id="cp-scale-preview" class="cp-scale-preview"></div>
+        </div>
+
+        <!-- Confirm -->
+        <button id="confirm-add-palette-btn" class="pm-confirm-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Add to Design System
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FLOATING COLOR PICKER
+  ═══════════════════════════════════════ -->
+  <div id="cpf-panel" class="cpf-panel hidden">
+    <!-- Drag handle -->
+    <div class="cpf-header" id="cpf-drag-handle">
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" class="cpf-grip">
+        <circle cx="2"  cy="2" r="1.3" fill="currentColor"/><circle cx="7"  cy="2" r="1.3" fill="currentColor"/><circle cx="12" cy="2" r="1.3" fill="currentColor"/>
+        <circle cx="2"  cy="8" r="1.3" fill="currentColor"/><circle cx="7"  cy="8" r="1.3" fill="currentColor"/><circle cx="12" cy="8" r="1.3" fill="currentColor"/>
+      </svg>
+      <span class="cpf-title">Color Picker</span>
+    </div>
+
+    <!-- 2D Saturation / Brightness area -->
+    <div class="cpf-gradient-wrap">
+      <div class="cpf-gradient" id="cpf-gradient">
+        <div class="cpf-grad-sat"></div>
+        <div class="cpf-grad-dark"></div>
+        <div class="cpf-cursor" id="cpf-cursor"></div>
+      </div>
+    </div>
+
+    <!-- Hue slider -->
+    <div class="cpf-sliders">
+      <div class="cpf-hue-track" id="cpf-hue-track">
+        <div class="cpf-hue-thumb" id="cpf-hue-thumb"></div>
+      </div>
+    </div>
+
+    <!-- Before / After preview -->
+    <div class="cpf-preview-row">
+      <div class="cpf-ba-wrap">
+        <div class="cpf-ba-swatch" id="cpf-before"></div>
+        <div class="cpf-ba-swatch" id="cpf-after"></div>
+      </div>
+      <span class="cpf-current-hex" id="cpf-current-hex">#000000</span>
+    </div>
+
+    <!-- Text inputs -->
+    <div class="cpf-inputs">
+      <div class="cpf-igroup cpf-igroup-hex">
+        <span class="cpf-ilabel">HEX</span>
+        <input type="text" id="cpf-hex" maxlength="7" spellcheck="false">
+      </div>
+      <div class="cpf-igroup">
+        <span class="cpf-ilabel">R</span>
+        <input type="number" id="cpf-r" min="0" max="255">
+      </div>
+      <div class="cpf-igroup">
+        <span class="cpf-ilabel">G</span>
+        <input type="number" id="cpf-g" min="0" max="255">
+      </div>
+      <div class="cpf-igroup">
+        <span class="cpf-ilabel">B</span>
+        <input type="number" id="cpf-b" min="0" max="255">
+      </div>
+    </div>
+
+    <!-- Accept / Cancel -->
+    <div class="cpf-actions">
+      <button class="cpf-cancel" id="cpf-cancel">Cancel</button>
+      <button class="cpf-accept" id="cpf-accept">Accept</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       ADD GRADIENT MODAL
+  ═══════════════════════════════════════ -->
+  <div id="gradient-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="gradient-modal-backdrop"></div>
+    <div class="modal-panel scale-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Gradient</span>
+          <span class="modal-subtitle">Define a color ramp token</span>
+        </div>
+        <button class="modal-close-btn" id="gradient-modal-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="scale-modal-body">
+        <div class="pm-row">
+          <label class="pm-label">Name</label>
+          <input type="text" class="prop-input" id="gradient-modal-name" placeholder="e.g. Hero, Card Header…" autocomplete="off">
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Type</label>
+          <div class="option-col-picker">
+            <button class="option-col-btn active" data-gtype="linear">Linear</button>
+            <button class="option-col-btn" data-gtype="radial">Radial</button>
+            <button class="option-col-btn" data-gtype="conic">Conic</button>
+          </div>
+        </div>
+        <div class="pm-row" id="gradient-direction-row">
+          <label class="pm-label">Direction</label>
+          <select class="prop-input" id="gradient-modal-direction">
+            <option value="to right">→ To Right</option>
+            <option value="to bottom">↓ To Bottom</option>
+            <option value="to bottom right">↘ To Bottom Right</option>
+            <option value="135deg">135°</option>
+            <option value="to top">↑ To Top</option>
+            <option value="to left">← To Left</option>
+            <option value="45deg">45°</option>
+            <option value="90deg">90°</option>
+          </select>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Color Stops</label>
+          <div id="gradient-stops-list">
+            <div class="gradient-stop-row" data-stop-idx="0">
+              <input type="color" class="gradient-stop-color" value="#7c3aed" style="width:32px;height:28px;border:none;border-radius:5px;cursor:pointer;padding:2px;flex-shrink:0">
+              <input type="text" class="prop-input gradient-stop-hex" value="#7c3aed" maxlength="7" style="flex:1">
+              <span class="gradient-stop-pct" style="font-size:11px;color:var(--text-3);width:28px;text-align:right;flex-shrink:0">0%</span>
+            </div>
+            <div class="gradient-stop-row" data-stop-idx="1">
+              <input type="color" class="gradient-stop-color" value="#06b6d4" style="width:32px;height:28px;border:none;border-radius:5px;cursor:pointer;padding:2px;flex-shrink:0">
+              <input type="text" class="prop-input gradient-stop-hex" value="#06b6d4" maxlength="7" style="flex:1">
+              <span class="gradient-stop-pct" style="font-size:11px;color:var(--text-3);width:28px;text-align:right;flex-shrink:0">100%</span>
+            </div>
+          </div>
+          <button class="add-layer-btn" id="gradient-add-stop-btn" style="margin-top:6px">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1V10M1 5.5H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Add Color Stop
+          </button>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Preview</label>
+          <div id="gradient-preview" style="height:56px;border-radius:8px;background:linear-gradient(to right,#7c3aed,#06b6d4)"></div>
+        </div>
+        <button id="gradient-modal-confirm" class="pm-confirm-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Add to Design System
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       ADD SPACING MODAL
+  ═══════════════════════════════════════ -->
+  <div id="spacing-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Add Spacing Scale">
+    <div class="modal-backdrop" id="spacing-modal-backdrop"></div>
+    <div class="modal-panel spacing-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Spacing Scale</span>
+          <span class="modal-subtitle">Token-based scale</span>
+        </div>
+        <button class="modal-close-btn" id="spacing-modal-close-btn" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="spacing-modal-body">
+        <div class="pm-row">
+          <label class="pm-label">Scale Name</label>
+          <input type="text" class="prop-input" id="spacing-name-input"
+                 placeholder="e.g. Base, Compact, Comfortable…" autocomplete="off">
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Base Unit</label>
+          <div class="font-size-stepper">
+            <button class="stepper-btn" id="spacing-base-dec">−</button>
+            <input class="stepper-input" type="number" id="spacing-base-input"
+                   min="1" max="24" value="4">
+            <button class="stepper-btn" id="spacing-base-inc">+</button>
+            <span class="kerning-unit">px</span>
+          </div>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Scale Preview</label>
+          <div id="spacing-scale-preview" class="spacing-scale-preview"></div>
+        </div>
+        <button id="confirm-add-spacing-btn" class="pm-confirm-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Add to Design System
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       ADD SHADOW MODAL
+  ═══════════════════════════════════════ -->
+  <div id="shadow-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Add Shadow">
+    <div class="modal-backdrop" id="shadow-modal-backdrop"></div>
+    <div class="modal-panel shadow-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Shadow</span>
+          <span class="modal-subtitle">Elevation style</span>
+        </div>
+        <button class="modal-close-btn" id="shadow-modal-close-btn" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="shadow-modal-body">
+        <div class="pm-row">
+          <label class="pm-label">Shadow Name</label>
+          <input type="text" class="prop-input" id="shadow-name-input"
+                 placeholder="e.g. Card, Dropdown, Modal…" autocomplete="off">
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Preset</label>
+          <div class="shadow-preset-row">
+            <button class="shadow-preset-btn active" data-preset="sm">sm</button>
+            <button class="shadow-preset-btn" data-preset="md">md</button>
+            <button class="shadow-preset-btn" data-preset="lg">lg</button>
+            <button class="shadow-preset-btn" data-preset="xl">xl</button>
+            <button class="shadow-preset-btn" data-preset="2xl">2xl</button>
+          </div>
+          <button class="shadow-custom-btn" data-preset="custom">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Create my own shadow
+          </button>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Preview</label>
+          <div class="shadow-preview-area">
+            <div id="shadow-preview-box"></div>
+          </div>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">CSS Value</label>
+          <div id="shadow-css-preview" class="shadow-css-preview"></div>
+        </div>
+        <button id="confirm-add-shadow-btn" class="pm-confirm-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Add to Design System
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       GENERIC SCALE MODAL (radii/borders/opacity/breakpoints/zindex/icons)
+  ═══════════════════════════════════════ -->
+  <div id="scale-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="scale-modal-backdrop"></div>
+    <div class="modal-panel scale-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title" id="scale-modal-title">Add Scale</span>
+          <span class="modal-subtitle" id="scale-modal-subtitle">Choose a preset</span>
+        </div>
+        <button class="modal-close-btn" id="scale-modal-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="scale-modal-body">
+        <div class="pm-row">
+          <label class="pm-label">Name</label>
+          <input type="text" class="prop-input" id="scale-modal-name" placeholder="Scale name…" autocomplete="off">
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Preset</label>
+          <div id="scale-modal-presets" class="shadow-preset-row"></div>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Preview</label>
+          <div id="scale-modal-preview" class="scale-modal-preview"></div>
+        </div>
+        <button id="scale-modal-confirm" class="pm-confirm-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Add to Design System
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MOTION MODAL
+  ═══════════════════════════════════════ -->
+  <div id="motion-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="motion-modal-backdrop"></div>
+    <div class="modal-panel scale-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Motion</span>
+          <span class="modal-subtitle">Duration &amp; easing tokens</span>
+        </div>
+        <button class="modal-close-btn" id="motion-modal-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="scale-modal-body">
+        <div class="pm-row">
+          <label class="pm-label">Name</label>
+          <input type="text" class="prop-input" id="motion-modal-name" placeholder="e.g. Default, Snappy…" autocomplete="off">
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Preset</label>
+          <div id="motion-modal-presets" class="shadow-preset-row"></div>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Durations</label>
+          <div id="motion-modal-durations" class="scale-modal-preview"></div>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Easings</label>
+          <div id="motion-modal-easings" class="scale-modal-preview"></div>
+        </div>
+        <button id="motion-modal-confirm" class="pm-confirm-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Add to Design System
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       GRID MODAL
+  ═══════════════════════════════════════ -->
+  <div id="grid-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="grid-modal-backdrop"></div>
+    <div class="modal-panel scale-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Grid</span>
+          <span class="modal-subtitle">Layout grid system</span>
+        </div>
+        <button class="modal-close-btn" id="grid-modal-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="scale-modal-body">
+        <div class="pm-row">
+          <label class="pm-label">Name</label>
+          <input type="text" class="prop-input" id="grid-modal-name" placeholder="e.g. Default, Wide…" autocomplete="off">
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Preset</label>
+          <div id="grid-modal-presets" class="shadow-preset-row"></div>
+        </div>
+        <div class="variant-typo-grid" style="margin-top:4px">
+          <div class="prop-field" style="margin-bottom:0"><label>Columns</label><div class="font-size-stepper"><button class="stepper-btn" id="grid-col-dec">−</button><input class="stepper-input" type="number" id="grid-modal-columns" min="1" max="24" value="12"><button class="stepper-btn" id="grid-col-inc">+</button></div></div>
+          <div class="prop-field" style="margin-bottom:0"><label>Gutter <span style="color:var(--text-3)">px</span></label><div class="font-size-stepper"><button class="stepper-btn" id="grid-gutter-dec">−</button><input class="stepper-input" type="number" id="grid-modal-gutter" min="0" max="64" value="16"><button class="stepper-btn" id="grid-gutter-inc">+</button></div></div>
+          <div class="prop-field" style="margin-bottom:0"><label>Max-width <span style="color:var(--text-3)">px</span></label><div class="font-size-stepper"><button class="stepper-btn" id="grid-maxw-dec">−</button><input class="stepper-input" type="number" id="grid-modal-maxwidth" min="320" max="3840" step="80" value="1280"><button class="stepper-btn" id="grid-maxw-inc">+</button></div></div>
+          <div class="prop-field" style="margin-bottom:0"><label>Margin <span style="color:var(--text-3)">px</span></label><div class="font-size-stepper"><button class="stepper-btn" id="grid-margin-dec">−</button><input class="stepper-input" type="number" id="grid-modal-margin" min="0" max="128" value="24"><button class="stepper-btn" id="grid-margin-inc">+</button></div></div>
+        </div>
+        <button id="grid-modal-confirm" class="pm-confirm-btn" style="margin-top:12px">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Add to Design System
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FALLBACK FONT PICKER MODAL
+  ═══════════════════════════════════════ -->
+  <div id="fallback-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="fallback-modal-backdrop"></div>
+    <div class="modal-panel fallback-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Fallback Font</span>
+          <span class="modal-subtitle">Choose fonts to use when the primary isn't available</span>
+        </div>
+        <button class="modal-close-btn" id="fallback-modal-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div id="fallback-modal-body" class="fallback-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       HISTORY MODAL
+  ═══════════════════════════════════════ -->
+  <div id="history-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="history-modal-backdrop"></div>
+    <div class="modal-panel history-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">History</span>
+          <span class="modal-subtitle">Last 20 actions — click any to restore</span>
+        </div>
+        <button class="modal-close-btn" id="history-modal-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div id="history-modal-body" class="history-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SEMANTIC TOKEN MODAL
+  ═══════════════════════════════════════ -->
+  <div id="token-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="token-modal-backdrop"></div>
+    <div class="modal-panel token-modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Add Semantic Token</span>
+          <span class="modal-subtitle" id="token-modal-subtitle">Map a raw token to a role</span>
+        </div>
+        <button class="modal-close-btn" id="token-modal-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="token-modal-body">
+        <div class="pm-row">
+          <label class="pm-label">Token Name</label>
+          <input type="text" class="prop-input" id="token-name-input"
+                 placeholder="e.g. color.brand.primary, spacing.component.gap" autocomplete="off">
+        </div>
+        <!-- Category is set automatically by which token type was clicked -->
+        <select id="token-category-select" style="display:none">
+          <option value="color">Color</option>
+          <option value="typography">Typography</option>
+          <option value="spacing">Spacing</option>
+          <option value="shadow">Shadow</option>
+        </select>
+        <div class="pm-row">
+          <label class="pm-label">Value / Reference</label>
+          <select class="prop-input" id="token-value-select"></select>
+        </div>
+        <div class="pm-row">
+          <label class="pm-label">Description</label>
+          <textarea class="prop-input" id="token-desc-input" rows="2"
+                    placeholder="When and how to use this token…"></textarea>
+        </div>
+        <button id="confirm-add-token-btn" class="pm-confirm-btn" style="margin-top:12px">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Add Token
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       EXPORT TOKENS MODAL
+  ═══════════════════════════════════════ -->
+  <div id="export-tokens-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="export-tokens-backdrop"></div>
+    <div class="modal-panel export-tokens-panel">
+
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title">Export Tokens</span>
+          <span class="modal-subtitle">Choose a format</span>
+        </div>
+        <button class="modal-close-btn" id="export-tokens-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Format tabs -->
+      <div class="export-format-tabs">
+        <button class="export-format-tab active" data-format="css">CSS Variables</button>
+        <button class="export-format-tab" data-format="json">JSON Tokens</button>
+        <button class="export-format-tab" data-format="scss">SCSS</button>
+        <button class="export-format-tab" data-format="tailwind">Tailwind</button>
+        <button class="export-format-tab" data-format="js">JS / TS</button>
+        <button class="export-format-tab" data-format="svg">SVG</button>
+      </div>
+
+      <!-- Format description -->
+      <div class="export-format-desc" id="export-format-desc"></div>
+
+      <!-- Code preview -->
+      <div class="export-code-wrap">
+        <pre class="export-code" id="export-code-block"><code id="export-code-content"></code></pre>
+      </div>
+
+      <!-- Actions -->
+      <div class="export-actions">
+        <button class="export-action-btn" id="export-copy-btn">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <rect x="4.5" y="4.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M3 8.5H2C1.448 8.5 1 8.052 1 7.5V2C1 1.448 1.448 1 2 1H7.5C8.052 1 8.5 1.448 8.5 2V3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          Copy to Clipboard
+        </button>
+        <button class="export-action-btn export-action-primary" id="export-download-btn">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M6.5 1V9M3.5 6.5L6.5 9.5L9.5 6.5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 10.5V11.5C1 11.776 1.224 12 1.5 12H11.5C11.776 12 12 11.776 12 11.5V10.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          Download File
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Shared smart tooltip -->
+  <div id="sr-tooltip-popup"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
