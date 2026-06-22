@@ -31,10 +31,10 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1100,
-    height: 780,
-    minWidth: 960,
-    minHeight: 600,
+    width: 1280,
+    height: 820,
+    minWidth: 1200,
+    minHeight: 640,
     center: true,
     titleBarStyle: 'hidden',
     trafficLightPosition: { x: 14, y: 14 },
@@ -157,6 +157,15 @@ ipcMain.handle('open-project', async () => {
   if (result.canceled || !result.filePaths.length) return null;
   const filePath = result.filePaths[0];
   return { filePath, data: fs.readFileSync(filePath, 'utf8') };
+});
+
+ipcMain.handle('open-project-path', async (event, filePath) => {
+  try {
+    if (!filePath || !fs.existsSync(filePath)) return { error: 'missing' };
+    return { filePath, data: fs.readFileSync(filePath, 'utf8') };
+  } catch (e) {
+    return { error: String(e && e.message || e) };
+  }
 });
 
 ipcMain.handle('save-project', async (event, jsonContent, defaultName, forceDialog) => {

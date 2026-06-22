@@ -9,3 +9,13 @@ dist/
 
 # Electron cache
 .cache/
+
+# Graphify (knowledge graph tooling + venv + generated outputs)
+.graphify-venv/
+graphify-out/
+
+# Agent tooling / local config (not part of the Designr app)
+.agents/
+.claude/
+.graphifyignore
+skills-lock.json

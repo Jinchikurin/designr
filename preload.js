@@ -19,6 +19,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   // Project save / load
   openProject: ()                        => ipcRenderer.invoke('open-project'),
+  openProjectPath: (filePath)            => ipcRenderer.invoke('open-project-path', filePath),
   saveProject: (json, name, forceDialog) => ipcRenderer.invoke('save-project', json, name, forceDialog),
   saveTextFile: (content, name, ext, filterName) => ipcRenderer.invoke('save-text-file', content, name, ext, filterName),
 
